@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+import scrapy-slackbot
 
 class EventsSpider(scrapy.Spider):
     name = 'events'

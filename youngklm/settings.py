@@ -58,9 +58,14 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+EXTENSIONS = {
+    'scrapyslackbot.extensions.SlackBot': 500,
+}
+
+# SLACK SETTINS
+SLACK_ENABLED = True
+SLACK_BOT_TOKEN = ''
+SLACK_CHANNEL = ''
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
