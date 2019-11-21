@@ -8,6 +8,9 @@ class EventsSpider(scrapy.Spider):
     start_urls = ['http://youngklm.nl/events']
 
     def parse(self, response):
+        test_setting = self.settings['TEST_SETTING']
+        print(test_setting)
+
         events = response.xpath('//*[@class="col-md-12"]')
 
         for event in events:
