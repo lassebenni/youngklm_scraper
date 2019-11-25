@@ -3,8 +3,10 @@ import json
 
 from scrapy.exceptions import NotConfigured
 from scrapy import signals, Spider
-from youngklm_scraper.youngklm.scrapinghubclient import ScrapingHubClient
-from youngklm_scraper.youngklm.slackwebhook import send_message_to_slack_channel
+
+from youngklm.slackwebhook import send_message_to_slack_channel
+
+from youngklm.scrapinghubclient import ScrapingHubClient
 
 logger = logging.getLogger(__name__)
 

@@ -60,7 +60,7 @@ DOWNLOAD_DELAY = 3
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
-    'youngklm_scraper.youngklm.eventpublisher.EventPublisher': 500
+    'youngklm.eventpublisher.EventPublisher': 500
 }
 
 EVENT_PUBLISHER_ENABLED = os.getenv("EVENT_PUBLISHER_ENABLED")
