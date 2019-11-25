@@ -55,6 +55,8 @@ class EventPublisher(object):
         previous_events = self.scrapinghub_client.get_stored_items(ScrapingHubClient.EVENTS_KEY)
         latest_events = self.events
 
+        logger.info("latest items: {}".format(latest_events))
+
         def events_updated():
             previous_urls = [event['event_url'] for event in previous_events]
             latest_urls = [event['event_url'] for event in latest_events]
