@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+from datetime import datetime
+
 import scrapy
-import scrapy-slackbot
+
 
 class EventsSpider(scrapy.Spider):
     name = 'events'
@@ -8,9 +9,6 @@ class EventsSpider(scrapy.Spider):
     start_urls = ['http://youngklm.nl/events']
 
     def parse(self, response):
-        test_setting = self.settings['TEST_SETTING']
-        print(test_setting)
-
         events = response.xpath('//*[@class="col-md-12"]')
 
         for event in events:
@@ -18,8 +16,13 @@ class EventsSpider(scrapy.Spider):
             date = event.xpath('.//*[@class="meta"]/text()').extract_first()
             text = event.xpath('.//h2/text()').extract_first()
 
+            # format "day-month-year hour:minute"
+            datetime_format = f'%d-%m-%y %H:%M'
+            now = datetime.strftime(datetime.now(), format=datetime_format)
+
             yield {
-                'date': date,
-                'text': text,
-                'url': url
+                'crawl_datetime': now,
+                'event_date': date,
+                'event_text': text,
+                'event_url': url
             }
