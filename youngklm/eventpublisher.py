@@ -28,7 +28,7 @@ class EventPublisher(object):
 
         scrapinghub_project_id = crawler.settings.getint('SCRAPINGHUB_PROJECT_ID')
         if not scrapinghub_project_id:
-            raise NotConfigured("SCRAPINGHUB_API_KEY not configured.")
+            raise NotConfigured("SCRAPINGHUB_PROJECT_ID not configured.")
 
         slack_webhook_url = crawler.settings.get('SLACK_WEBHOOK_URL')
         if not slack_webhook_url:
