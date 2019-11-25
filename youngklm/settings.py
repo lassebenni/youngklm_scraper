@@ -8,6 +8,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 
 BOT_NAME = 'youngklm'
 
@@ -27,7 +28,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -59,13 +60,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
-    'scrapyslackbot.extensions.SlackBot': 500,
+    'youngklm_scraper.youngklm.eventpublisher.EventPublisher': 500
 }
 
-# SLACK SETTINS
-SLACK_ENABLED = True
-SLACK_BOT_TOKEN = ''
-SLACK_CHANNEL = ''
+EVENT_PUBLISHER_ENABLED = os.getenv("EVENT_PUBLISHER_ENABLED")
+SCRAPINGHUB_API_KEY = os.getenv("SCRAPINGHUB_API_KEY")
+SCRAPINGHUB_PROJECT_ID = os.getenv("SCRAPINGHUB_PROJECT_ID")
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
