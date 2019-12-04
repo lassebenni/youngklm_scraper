@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+from datetime import datetime
+
 import scrapy
 
 
@@ -15,8 +16,13 @@ class EventsSpider(scrapy.Spider):
             date = event.xpath('.//*[@class="meta"]/text()').extract_first()
             text = event.xpath('.//h2/text()').extract_first()
 
+            # format "day-month-year hour:minute"
+            datetime_format = f'%d-%m-%y %H:%M'
+            now = datetime.strftime(datetime.now(), format=datetime_format)
+
             yield {
-                'date': date,
-                'text': text,
-                'url': url
+                'crawl_datetime': now,
+                'event_date': date,
+                'event_text': text,
+                'event_url': url
             }
