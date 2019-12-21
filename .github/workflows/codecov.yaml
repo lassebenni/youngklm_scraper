@@ -8,10 +8,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Codecov
+    - uses: actions/checkout@master
+    - name: Setup Python  
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.7
+    - name: Generate coverage report
+      run: |
+        pip install pytest
+        pip install pytest-cov
+        pytest --cov=./ --cov-report=xml
+    - name: Upload coverage to Codecov  
       uses: codecov/codecov-action@v1.0.5
       with:
-        # User defined upload name. Visible in Codecov UI
-        name: youngklm-scraper
-        # Repository upload token - get it from codecov.io
         token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        yml: ./codecov.yml 
+        fail_ci_if_error: true
+        
